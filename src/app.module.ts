@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { AppController } from './app.controller';
-import { BingController } from './bing/bing.controller';
-import { BingService } from './bing/bing.service';
 import { AppService } from './app.service';
+import { BingModule } from './bing/bing.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [HttpModule],
-  controllers: [AppController, BingController],
-  providers: [AppService, BingService],
+  imports: [HttpModule, BingModule, UserModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
