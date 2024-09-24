@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   /**
    * 通过唯一标识查询用户
@@ -37,13 +37,12 @@ export class UserService {
     });
   }
 
-
   /**
-    * 创建一个新的用户
-    *
-    * @param {Prisma.UserCreateInput} data - 用户的数据，包含创建用户所需的所有信息
-    * @returns {Promise<User>} - 创建成功的用户对象
-  */
+   * 创建一个新的用户
+   *
+   * @param {Prisma.UserCreateInput} data - 用户的数据，包含创建用户所需的所有信息
+   * @returns {Promise<User>} - 创建成功的用户对象
+   */
   async createUser(data: Prisma.UserCreateInput): Promise<User> {
     return this.prisma.user.create({
       data,
@@ -57,7 +56,7 @@ export class UserService {
    * @param {Prisma.UserWhereUniqueInput} params.where - 用于定位要更新的用户的唯一标识
    * @param {Prisma.UserUpdateInput} params.data - 要更新的用户数据
    * @returns {Promise<User>} - 更新后的用户信息
-  */
+   */
   async updateUser(params: {
     where: Prisma.UserWhereUniqueInput;
     data: Prisma.UserUpdateInput;

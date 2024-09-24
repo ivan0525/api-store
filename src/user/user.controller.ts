@@ -1,12 +1,23 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { Prisma, User as UserModel } from '@prisma/client';
 
 @Controller('user')
 export class UserController {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
   @Post('create')
-  create(@Body() userData: { name?: string; email: string }): Promise<UserModel> {
+  create(
+    @Body() userData: { name?: string; email: string },
+  ): Promise<UserModel> {
     return this.userService.createUser(userData);
   }
 
@@ -16,7 +27,10 @@ export class UserController {
   }
 
   @Put('publish/:id')
-  async publishPost(@Param('id') id: string, @Body() userData: { name?: string; email: string }): Promise<UserModel> {
+  async publishPost(
+    @Param('id') id: string,
+    @Body() userData: { name?: string; email: string },
+  ): Promise<UserModel> {
     return this.userService.updateUser({
       where: { id: Number(id) },
       data: userData,
@@ -25,7 +39,7 @@ export class UserController {
 
   @Get('queryPage')
   async queryPage(@Query('id') id: string): Promise<UserModel[]> {
-    console.log(id)
-    return this.userService.queryPage({ where: { id: Number(id) } })
+    console.log(id);
+    return this.userService.queryPage({ where: { id: Number(id) } });
   }
 }
