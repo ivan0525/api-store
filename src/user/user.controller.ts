@@ -9,15 +9,14 @@ import {
   Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { Prisma, User as UserModel } from '@prisma/client';
+import { User as UserModel } from '@prisma/client';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
   @Post('create')
-  create(
-    @Body() userData: { name?: string; email: string },
-  ): Promise<UserModel> {
+  create(@Body() userData: CreateUserDto): Promise<UserModel> {
     return this.userService.createUser(userData);
   }
 
