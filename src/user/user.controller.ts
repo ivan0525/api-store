@@ -38,7 +38,6 @@ export class UserController {
 
   @Get('queryPage')
   async queryPage(@Query('id') id: string): Promise<UserModel[]> {
-    console.log(id);
     return this.userService.queryPage({ where: { id: Number(id) } });
   }
 }
